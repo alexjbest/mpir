@@ -1,0 +1,52 @@
+#!/bin/bash
+
+# Usage: benchmark <function_name> <arguments_format> [file1, file2, ...]
+# Where: function_name     is the full name of the function e.g. mpn_addadd_n
+#        arguments_format  is a string specifying what the function requires as input,
+#                          currently only PPs (pointer, pointer, size) and PPPs are supported
+#        file1, file2, ... are an arbitrary list of .asm (and soon .as) files containing
+#                          implementations of the function
+
+FUNC=$1
+FORMAT=$2
+FILES=( "$@" )
+
+#TODO check number of args
+mkdir -p "benched-functions"
+mkdir -p "tmp"
+# Get the appropriate line of the data file in which to put our new benchmark
+BENCHLINE=$(cat -n data.yml | grep "$FUNC" -m1 -A10000 | grep "benchmarks" -m1 | awk '{print $1}' )
+#TODO if this fails, write the appropriate entry into data? with sensible defaults
+for file in "${FILES[@]:2}"
+do
+	echo $file
+	SUM=$(md5sum $file | cut -c 1-32)
+	cp $file "benched-functions/$SUM-$(basename $file)"
+
+	if [[ $file == *.asm ]]
+	then
+		m4 $file > tmp/func.s
+		m4 -Dfuncname=__g$FUNC -D$FORMAT bench.c > tmp/bench.c
+		gcc -o tmp/bench tmp/func.s tmp/bench.c
+	elif [[ $file == *.asm ]]
+	then
+		../yasm/yasm --help #TODO
+	fi
+	OUTPUT=$( tmp/bench )
+	DATE=$(date +"%F %T")
+	CPU=$(cat /proc/cpuinfo | grep "model name" -m1 | cut -d: -f2)
+	# TODO learn how sed works so you can do this forwards
+	sed -i "$BENCHLINE a\
+ 		\ \ \ \ results: $OUTPUT" data.yml
+	sed -i "$BENCHLINE a\
+ 		\ \ \ \ cpu: $CPU" data.yml
+	sed -i "$BENCHLINE a\
+ 		\ \ \ \ hash: $SUM" data.yml
+	sed -i "$BENCHLINE a\
+ 		\ \ \ \ date: $DATE" data.yml
+	sed -i "$BENCHLINE a\
+ 		\ \ -\ " data.yml
+
+done
+
+#rm -rf tmp
