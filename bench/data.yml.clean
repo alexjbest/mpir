@@ -1,0 +1,386 @@
+---
+functions:
+-
+  name: "mpn_add_n"
+  type: ""
+  module: "mpn"
+  bench-limb-range: 1-1000
+  benchmarks:
+-
+  name: "mpn_addadd_n"
+  type: ""
+  module: "mpn"
+  bench-limb-range: 1-1000
+  benchmarks:
+-
+  name: "mpn_addmul_2"
+  type: ""
+  module: "mpn"
+  bench-limb-range: 1-1000
+  benchmarks:
+-
+  name: "mpn_addsub_n"
+  type: ""
+  module: "mpn"
+  bench-limb-range: 1-1000
+  benchmarks:
+-
+  name: "mpn_andn_n"
+  type: ""
+  module: "mpn"
+  bench-limb-range: 1-1000
+  benchmarks:
+-
+  name: "mpn_com_n"
+  type: ""
+  module: "mpn"
+  bench-limb-range: 1-1000
+  benchmarks:
+-
+  name: "mpn_copyd"
+  type: ""
+  module: "mpn"
+  bench-limb-range: 1-1000
+  benchmarks:
+-
+  name: "mpn_copyi"
+  type: ""
+  module: "mpn"
+  bench-limb-range: 1-1000
+  benchmarks:
+-
+  name: "mpn_divexact_by3c"
+  type: ""
+  module: "mpn"
+  bench-limb-range: 1-1000
+  benchmarks:
+-
+  name: "mpn_divexact_byff"
+  type: ""
+  module: "mpn"
+  bench-limb-range: 1-1000
+  benchmarks:
+-
+  name: "mpn_divexact_byfobm1"
+  type: ""
+  module: "mpn"
+  bench-limb-range: 1-1000
+  benchmarks:
+-
+  name: "mpn_divrem_2"
+  type: ""
+  module: "mpn"
+  bench-limb-range: 1-1000
+  benchmarks:
+-
+  name: "mpn_divrem_euclidean_qr_1"
+  type: ""
+  module: "mpn"
+  bench-limb-range: 1-1000
+  benchmarks:
+-
+  name: "mpn_divrem_euclidean_qr_2"
+  type: ""
+  module: "mpn"
+  bench-limb-range: 1-1000
+  benchmarks:
+-
+  name: "mpn_iorn_n"
+  type: ""
+  module: "mpn"
+  bench-limb-range: 1-1000
+  benchmarks:
+-
+  name: "mpn_lshift"
+  type: ""
+  module: "mpn"
+  bench-limb-range: 1-1000
+  benchmarks:
+-
+  name: "mpn_lshift1"
+  type: ""
+  module: "mpn"
+  bench-limb-range: 1-1000
+  benchmarks:
+-
+  name: "mpn_modexact_1c_odd"
+  type: ""
+  module: "mpn"
+  bench-limb-range: 1-1000
+  benchmarks:
+-
+  name: "mpn_mul_2"
+  type: ""
+  module: "mpn"
+  bench-limb-range: 1-1000
+  benchmarks:
+-
+  name: "mpn_mul_basecase"
+  type: ""
+  module: "mpn"
+  bench-limb-range: 1-1000
+  benchmarks:
+-
+  name: "mpn_redc_1"
+  type: ""
+  module: "mpn"
+  bench-limb-range: 1-1000
+  benchmarks:
+-
+  name: "mpn_rshift"
+  type: ""
+  module: "mpn"
+  bench-limb-range: 1-1000
+  benchmarks:
+-
+  name: "mpn_rshift1"
+  type: ""
+  module: "mpn"
+  bench-limb-range: 1-1000
+  benchmarks:
+-
+  name: "mpn_sub_n"
+  type: ""
+  module: "mpn"
+  bench-limb-range: 1-1000
+  benchmarks:
+-
+  name: "mpn_subadd_n"
+  type: ""
+  module: "mpn"
+  bench-limb-range: 1-1000
+  benchmarks:
+-
+  name: "mpn_sumdiff_n"
+  type: ""
+  module: "mpn"
+  bench-limb-range: 1-1000
+  benchmarks:
+-
+  name: "mpn_xnor_n"
+  type: ""
+  module: "mpn"
+  bench-limb-range: 1-1000
+  benchmarks:
+-
+  name: "mpn_add_err1_n"
+  type: ""
+  module: "mpn"
+  bench-limb-range: 1-1000
+  benchmarks:
+-
+  name: "mpn_add_err2_n"
+  type: ""
+  module: "mpn"
+  bench-limb-range: 1-1000
+  benchmarks:
+-
+  name: "mpn_addlsh1_n"
+  type: ""
+  module: "mpn"
+  bench-limb-range: 1-1000
+  benchmarks:
+-
+  name: "mpn_addlsh_n"
+  type: ""
+  module: "mpn"
+  bench-limb-range: 1-1000
+  benchmarks:
+-
+  name: "mpn_addmul_1"
+  type: ""
+  module: "mpn"
+  bench-limb-range: 1-1000
+  benchmarks:
+-
+  name: "mpn_and_n"
+  type: ""
+  module: "mpn"
+  bench-limb-range: 1-1000
+  benchmarks:
+-
+  name: "mpn_divrem_hensel_qr_1_1"
+  type: ""
+  module: "mpn"
+  bench-limb-range: 1-1000
+  benchmarks:
+-
+  name: "mpn_divrem_hensel_qr_1_2"
+  type: ""
+  module: "mpn"
+  bench-limb-range: 1-1000
+  benchmarks:
+-
+  name: "mpn_divrem_hensel_r_1"
+  type: ""
+  module: "mpn"
+  bench-limb-range: 1-1000
+  benchmarks:
+-
+  name: "mpn_double"
+  type: ""
+  module: "mpn"
+  bench-limb-range: 1-1000
+  benchmarks:
+-
+  name: "mpn_half"
+  type: ""
+  module: "mpn"
+  bench-limb-range: 1-1000
+  benchmarks:
+-
+  name: "mpn_hamdist"
+  type: ""
+  module: "mpn"
+  bench-limb-range: 1-1000
+  benchmarks:
+-
+  name: "mpn_ior_n"
+  type: ""
+  module: "mpn"
+  bench-limb-range: 1-1000
+  benchmarks:
+-
+  name: "mpn_karaadd"
+  type: ""
+  module: "mpn"
+  bench-limb-range: 1-1000
+  benchmarks:
+-
+  name: "mpn_karasub"
+  type: ""
+  module: "mpn"
+  bench-limb-range: 1-1000
+  benchmarks:
+-
+  name: "mpn_lshiftc"
+  type: ""
+  module: "mpn"
+  bench-limb-range: 1-1000
+  benchmarks:
+-
+  name: "mpn_mod_1_1"
+  type: ""
+  module: "mpn"
+  bench-limb-range: 1-1000
+  benchmarks:
+-
+  name: "mpn_mod_1_2"
+  type: ""
+  module: "mpn"
+  bench-limb-range: 1-1000
+  benchmarks:
+-
+  name: "mpn_mod_1_3"
+  type: ""
+  module: "mpn"
+  bench-limb-range: 1-1000
+  benchmarks:
+-
+  name: "mpn_mul_1"
+  type: ""
+  module: "mpn"
+  bench-limb-range: 1-1000
+  benchmarks:
+-
+  name: "mpn_mulmid_basecase"
+  type: ""
+  module: "mpn"
+  bench-limb-range: 1-1000
+  benchmarks:
+-
+  name: "mpn_nand_n"
+  type: ""
+  module: "mpn"
+  bench-limb-range: 1-1000
+  benchmarks:
+-
+  name: "mpn_nior_n"
+  type: ""
+  module: "mpn"
+  bench-limb-range: 1-1000
+  benchmarks:
+-
+  name: "mpn_not"
+  type: ""
+  module: "mpn"
+  bench-limb-range: 1-1000
+  benchmarks:
+-
+  name: "mpn_popcount"
+  type: ""
+  module: "mpn"
+  bench-limb-range: 1-1000
+  benchmarks:
+-
+  name: "mpn_rsh1add_n"
+  type: ""
+  module: "mpn"
+  bench-limb-range: 1-1000
+  benchmarks:
+-
+  name: "mpn_rsh1sub_n"
+  type: ""
+  module: "mpn"
+  bench-limb-range: 1-1000
+  benchmarks:
+-
+  name: "mpn_rsh_divrem_hensel_qr_1_1"
+  type: ""
+  module: "mpn"
+  bench-limb-range: 1-1000
+  benchmarks:
+-
+  name: "mpn_rsh_divrem_hensel_qr_1_2"
+  type: ""
+  module: "mpn"
+  bench-limb-range: 1-1000
+  benchmarks:
+-
+  name: "mpn_sqr_basecase"
+  type: ""
+  module: "mpn"
+  bench-limb-range: 1-1000
+  benchmarks:
+-
+  name: "mpn_store"
+  type: ""
+  module: "mpn"
+  bench-limb-range: 1-1000
+  benchmarks:
+-
+  name: "mpn_sub_err1_n"
+  type: ""
+  module: "mpn"
+  bench-limb-range: 1-1000
+  benchmarks:
+-
+  name: "mpn_sub_err2_n"
+  type: ""
+  module: "mpn"
+  bench-limb-range: 1-1000
+  benchmarks:
+-
+  name: "mpn_sublsh1_n"
+  type: ""
+  module: "mpn"
+  bench-limb-range: 1-1000
+  benchmarks:
+-
+  name: "mpn_sublsh_n"
+  type: ""
+  module: "mpn"
+  bench-limb-range: 1-1000
+  benchmarks:
+-
+  name: "mpn_submul_1"
+  type: ""
+  module: "mpn"
+  bench-limb-range: 1-1000
+  benchmarks:
+-
+  name: "mpn_xor_n"
+  type: ""
+  module: "mpn"
+  bench-limb-range: 1-1000
+  benchmarks:
