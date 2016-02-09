@@ -1,0 +1,5 @@
+#!/bin/bash
+rm -rf tmp
+rm -rf benched-functions
+rm -f sed*
+cp data.yml.clean data.yml

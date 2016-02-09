@@ -3,49 +3,74 @@
 # Usage: benchmark <function_name> <arguments_format> [file1, file2, ...]
 # Where: function_name     is the full name of the function e.g. mpn_addadd_n
 #        arguments_format  is a string specifying what the function requires as input,
-#                          currently only PPs (pointer, pointer, size) and PPPs are supported
+#                          r specifies a return value is given, this can be needed to prevent
+#                          GCC from optimising a function to nothing
+#                          p represents a (pointer to an mpn)
+#                          s stands for the size of the mpns
+#                          currently supported: rps, ps, rpps, pps, ppps, pppps
 #        file1, file2, ... are an arbitrary list of .asm (and soon .as) files containing
 #                          implementations of the function
 
+set -e
+
 FUNC=$1
 FORMAT=$2
-FILES=( "$@" )
+FILES=${@:3}
 
-#TODO check number of args
+if [ "$#" -lt 3 ]; then
+	echo "error: not enough parameters"
+	exit
+fi
+
 mkdir -p "benched-functions"
 mkdir -p "tmp"
+
+echo "benching: $FUNC"
+
 # Get the appropriate line of the data file in which to put our new benchmark
 BENCHLINE=$(cat -n data.yml | grep "$FUNC" -m1 -A10000 | grep "benchmarks" -m1 | awk '{print $1}' )
+if [[ $BENCHLINE == "" ]]
+then
+	echo "warning: could not find location to add benchmark data for $FUNC, output will not be saved"
+fi
 #TODO if this fails, write the appropriate entry into data? with sensible defaults
-for file in "${FILES[@]:2}"
-do
-	echo $file
-	SUM=$(md5sum $file | cut -c 1-32)
-	cp $file "benched-functions/$SUM-$(basename $file)"
 
+CPU=$(cat /proc/cpuinfo | grep "model name" -m1 | cut -d: -f2)
+GUESS=$(../config.guess)
+
+for file in ${FILES[@]}
+do
+	if [[ ! -f $file ]] ; then
+		echo "error: $file not found."
+		exit
+	fi
+	echo "copying: $file"
+	SUM=$(grep -v '^$\|^\s*\dnl\|^\s*\C\|^\s*\#\|^\s*\;' $file | tr -d "[:blank:]" |md5sum | cut -c 1-32)
+	#TODO could use different comment filters for different filetypes
+	cp $file "benched-functions/$SUM-$(basename $file)"
+	echo "hash: $SUM"
+
+	echo "compiling: $file"
+	m4 $file > tmp/func.s
+	m4 -Dfuncname=__g$FUNC -D$FORMAT bench.c > tmp/bench.c
+	gcc -c -I.. -o tmp/bench.o tmp/bench.c
 	if [[ $file == *.asm ]]
 	then
-		m4 $file > tmp/func.s
-		m4 -Dfuncname=__g$FUNC -D$FORMAT bench.c > tmp/bench.c
-		gcc -o tmp/bench tmp/func.s tmp/bench.c
-	elif [[ $file == *.asm ]]
+		gcc -c -I.. -o tmp/func.o tmp/func.s
+	elif [[ $file == *.as ]]
 	then
-		../yasm/yasm --help #TODO
+		../yasm/yasm -f elf64 -I .. -o tmp/func.o tmp/func.s
 	fi
-	OUTPUT=$( tmp/bench )
-	DATE=$(date +"%F %T")
-	CPU=$(cat /proc/cpuinfo | grep "model name" -m1 | cut -d: -f2)
-	# TODO learn how sed works so you can do this forwards
-	sed -i "$BENCHLINE a\
- 		\ \ \ \ results: $OUTPUT" data.yml
-	sed -i "$BENCHLINE a\
- 		\ \ \ \ cpu: $CPU" data.yml
-	sed -i "$BENCHLINE a\
- 		\ \ \ \ hash: $SUM" data.yml
-	sed -i "$BENCHLINE a\
- 		\ \ \ \ date: $DATE" data.yml
-	sed -i "$BENCHLINE a\
- 		\ \ -\ " data.yml
+	gcc tmp/bench.o tmp/func.o -L/home/best/lib/ -Wl,-rpath,/home/best/lib/ -lmpir -lgmp -o tmp/bench
+
+	if [[ $BENCHLINE != "" ]]
+	then
+		echo "timing: $file"
+		OUTPUT=$( tmp/bench )
+		echo $OUTPUT
+		DATE=$(date +"%F %T")
+		sed -i "$BENCHLINE a\\ \ -\n\ \ \ \ date: $DATE\n\ \ \ \ hash: $SUM\n\ \ \ \ cpu: $CPU\n\ \ \ \ arch: $GUESS\n\ \ \ \ results: $OUTPUT" data.yml
+	fi
 
 done
 
