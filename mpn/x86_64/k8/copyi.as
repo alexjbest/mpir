@@ -20,7 +20,7 @@
 %include 'yasm_mac.inc'
 
 ;	mpn_copyi(mp_ptr rdi ,mp_ptr rsi ,mp_size_t rdx)
-;	(rdi,rdx)=(rdi,rdx)
+;	(rdi,rdx)=(rsi,rdx)
 
 	GLOBAL_FUNC mpn_copyi
 	sub     rdx, 4
