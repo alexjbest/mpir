@@ -24,6 +24,9 @@ include(`../config.m4')
 C	ret mpn_popcount(mp_ptr,mp_size_t)
 C	rax               rdi,   rsi
 
+C  | Architecture | Piledriver |
+C  | Cycles/Limb  |    2.1     |
+
 define(`MOVQ',`movd')
 
 ASM_START()
