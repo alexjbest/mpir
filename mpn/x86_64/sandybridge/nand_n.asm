@@ -24,6 +24,9 @@ include(`../config.m4')
 C	ret mpn_nand_n(mp_ptr,mp_srcptr,mp_srcptr,mp_size_t)
 C	rax             rdi,   rsi,      rdx,     rcx
 
+C  | Architecture | Piledriver |
+C  | Cycles/Limb  |    2.1     |
+
 ASM_START()
 PROLOGUE(mpn_nand_n)
 mov $3,%r8
