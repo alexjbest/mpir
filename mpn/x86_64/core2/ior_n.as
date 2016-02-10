@@ -17,8 +17,11 @@
 
 %include 'yasm_mac.inc'
 
-;	(rdi, rcx) = (rsi, rcx) | (rdx, rcx)
-	
+;	(rdi, rcx) = (rsi, rcx) | (rdx, rcx)	
+
+;  | Architecture | Piledriver |
+;  | Cycles/Limb  |    2.8     |
+
     BITS 64
     
    GLOBAL_FUNC mpn_ior_n
