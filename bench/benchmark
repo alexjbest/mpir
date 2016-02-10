@@ -3,13 +3,14 @@
 # Usage: benchmark <function_name> <arguments_format> [file1, file2, ...]
 # Where: function_name     is the full name of the function e.g. mpn_addadd_n
 #        arguments_format  is a string specifying what the function requires as input,
-#                          r specifies a return value is given, this can be needed to prevent
-#                          GCC from optimising a function to nothing
+#                          r specifies a return value is given, this can be needed to
+#                          prevent GCC from optimising a function to nothing
 #                          p represents a (pointer to an mpn)
 #                          s stands for the size of the mpns
 #                          currently supported: rps, ps, rpps, pps, ppps, pppps
-#        file1, file2, ... are an arbitrary list of .asm (and soon .as) files containing
-#                          implementations of the function
+#        file1, file2, ... are an arbitrary list of .asm or .as files containing
+#                          implementations of the function, .asm should be
+#                          att/gcc syntax, .as intel syntax
 
 set -e
 
@@ -51,7 +52,7 @@ do
 	echo "hash: $SUM"
 
 	echo "compiling: $file"
-	m4 $file > tmp/func.s
+	m4 $file > tmp/func.s #TODO make sure m4 doesn't mess with any .as files
 	m4 -Dfuncname=__g$FUNC -D$FORMAT bench.c > tmp/bench.c
 	gcc -c -I.. -o tmp/bench.o tmp/bench.c
 	if [[ $file == *.asm ]]
@@ -67,7 +68,7 @@ do
 	then
 		echo "timing: $file"
 		OUTPUT=$( tmp/bench )
-		echo $OUTPUT
+		#echo $OUTPUT
 		DATE=$(date +"%F %T")
 		sed -i "$BENCHLINE a\\ \ -\n\ \ \ \ date: $DATE\n\ \ \ \ hash: $SUM\n\ \ \ \ cpu: $CPU\n\ \ \ \ arch: $GUESS\n\ \ \ \ results: $OUTPUT" data.yml
 	fi
