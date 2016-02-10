@@ -21,6 +21,9 @@
 
 ;	ret mpn_sublsh1_n(mp_ptr,mp_ptr,mp_ptr,mp_size_t)
 
+;  | Architecture | Piledriver |
+;  | Cycles/Limb  |    3.5     |
+
 	GLOBAL_FUNC mpn_sublsh1_n
 	push    rbx
 	lea     rdi, [rdi+rcx*8-56]

@@ -29,6 +29,8 @@ define(`USE_LINUX64',1)
 # - includes LAHF / SAHF
 # - includes prefetching
 
+C  | Architecture | Piledriver |
+C  | Cycles/Limb  |    4.9     |
 
 ifdef(`USE_LINUX64',`
 

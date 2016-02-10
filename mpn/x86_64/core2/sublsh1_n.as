@@ -19,7 +19,10 @@
 
 ;	(rdi, rcx) = (rsi, rcx) - (rdx, rcx)<<1
 ;	rax = borrow
-	
+
+;  | Architecture | Piledriver |
+;  | Cycles/Limb  |    3.7     |
+
     BITS 64
     
    GLOBAL_FUNC mpn_sublsh1_n
