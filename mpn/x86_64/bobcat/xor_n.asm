@@ -24,6 +24,9 @@ include(`../config.m4')
 C	ret mpn_xor_n(mp_ptr,mp_ptr,mp_ptr,mp_size_t)
 C	rax              rdi,   rsi,    rdx,  rcx
 
+C  | Architecture | Piledriver |
+C  | Cycles/Limb  |    2.7     |
+
 ASM_START()
 PROLOGUE(mpn_xor_n)
 sub $4,%rcx
