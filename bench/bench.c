@@ -5,6 +5,7 @@
 #define INNER_ITER 200
 #define BOUND_OF_LOOP 1
 #define MAX_LIMBS 1000
+#define INCREMENT 7
 define(`callfunc',`
         ifdef(`rps',`  ret = funcname (data1, limbs); ') //TODO could maybe use ifelse based switch here which might look nicer
         ifdef(`ps',`   funcname (data1, limbs); ')
@@ -199,7 +200,7 @@ main (int argc, char *argv[])
   }
 
   printf("{");
-  for (limbs = 1; limbs <= 1000; limbs++)
+  for (limbs = (MAX_LIMBS % INCREMENT); limbs <= MAX_LIMBS; limbs = limbs + INCREMENT)
   {
     avg_mins = 0;
 
@@ -240,7 +241,7 @@ main (int argc, char *argv[])
     avg_mins = avg_mins / BOUND_OF_LOOP;
     printf("%ld: %ld", limbs, avg_mins);
 
-    if (limbs < 1000)
+    if (limbs < MAX_LIMBS)
       printf(", ");
   }
   printf("}");
