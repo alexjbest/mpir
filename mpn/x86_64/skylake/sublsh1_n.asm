@@ -1,6 +1,6 @@
 include(`../config.m4')
 define(`USE_LINUX64',1)
-dnldefine(`USE_PREFETCH',1)
+dnl define(`USE_PREFETCH',1)
 
 dnl Copyright (C) 2016, Jens Nurmann
 dnl All rights reserved.
@@ -39,18 +39,18 @@ ifdef(`USE_LINUX64',`
   define(`NumLimbs',  %rcx)
   define(`Op3',   %rdi)
   ifdef(`USE_PREFETCH',`
-    define(`Offs',  %rbp)        # SAVE!
+    define(`Offs',  %rbp)        C  SAVE!
   ')
 
-  define(`Limb0', %rbx)        # SAVE!
+  define(`Limb0', %rbx)        C  SAVE!
   define(`Limb1', %r8)
   define(`Limb2', %r9)
   define(`Limb3', %r10)
   define(`Limb4', %r11)
-  define(`Limb5', %r12)        # SAVE!
-  define(`Limb6', %r13)        # SAVE!
-  define(`Limb7', %r14)        # SAVE!
-  define(`Limb8', %r15)        # SAVE!
+  define(`Limb5', %r12)        C  SAVE!
+  define(`Limb6', %r13)        C  SAVE!
+  define(`Limb7', %r14)        C  SAVE!
+  define(`Limb8', %r15)        C  SAVE!
 
 ')
 
@@ -61,18 +61,18 @@ ifdef(`USE_WIN64',`
   define(`NumLimbs',  %r8)
   define(`Op3',   %r9)
   ifdef(`USE_PREFETCH',`
-    define(`Offs',  %rbp)         # SAVE!
+    define(`Offs',  %rbp)         C  SAVE!
   ')
 
-  define(`Limb0', %rbx)        # SAVE!
-  define(`Limb1', %rdi)        # SAVE!
-  define(`Limb2', %rsi)        # SAVE!
+  define(`Limb0', %rbx)        C  SAVE!
+  define(`Limb1', %rdi)        C  SAVE!
+  define(`Limb2', %rsi)        C  SAVE!
   define(`Limb3', %r10)
   define(`Limb4', %r11)
-  define(`Limb5', %r12)        # SAVE!
-  define(`Limb6', %r13)        # SAVE!
-  define(`Limb7', %r14)        # SAVE!
-  define(`Limb8', %r15)        # SAVE!
+  define(`Limb5', %r12)        C  SAVE!
+  define(`Limb6', %r13)        C  SAVE!
+  define(`Limb7', %r14)        C  SAVE!
+  define(`Limb8', %r15)        C  SAVE!
 
 ')
 
@@ -114,14 +114,14 @@ PROLOGUE(mpn_sublsh1_n)
   ifdef(`USE_PREFETCH',`
     prefetchnta (Op1)
     prefetchnta (Op2)
-    mov     $512, %ebp            # Attn: check if redefining Offs
+    mov     $512, %ebp            C  Attn: check if redefining Offs
   ')
 
-    # prepare shift & subtraction with loop-unrolling $8
+    C  prepare shift & subtraction with loop-unrolling $8
     xor     Limb0, Limb0
-    lahf                        # memorize clear carry (from "xor")
+    lahf                        C  memorize clear carry (from "xor")
 
-    test    $1, NumLimbs             # a good %r8 / R16 / R32 macro would help!
+    test    $1, NumLimbs             C  a good %r8 / R16 / R32 macro would help!
     je      .lSubShl1rEquTwo
 
     mov     (Op2), Limb1
@@ -140,7 +140,7 @@ PROLOGUE(mpn_sublsh1_n)
 
   .lSubShl1rEquTwo:
 
-    test    $2, NumLimbs             # a good %r8 / R16 / R32 macro would help!
+    test    $2, NumLimbs             C  a good %r8 / R16 / R32 macro would help!
     je      .lSubShl1rEquFour
 
     mov     (Op2), Limb1
@@ -164,8 +164,8 @@ PROLOGUE(mpn_sublsh1_n)
 
   .lSubShl1rEquFour:
 
-    test    $4, NumLimbs             # a good %r8 / R16 / R32 macro would help!
-    je      .lSubShl1rEquTest   # enter main loop =>
+    test    $4, NumLimbs             C  a good %r8 / R16 / R32 macro would help!
+    je      .lSubShl1rEquTest   C  enter main loop =>
 
     mov     (Op2), Limb1
     mov     8(Op2), Limb2
@@ -195,9 +195,9 @@ PROLOGUE(mpn_sublsh1_n)
     add     $32, Op2
     add     $32, Op3
     mov     Limb4, Limb0
-    jmp     .lSubShl1rEquTest   # enter main loop =>
+    jmp     .lSubShl1rEquTest   C  enter main loop =>
 
-    # main loop: <1.5 cycles per limb across all caches
+    C  main loop: <1.5 cycles per limb across all caches
     .align   32
   .lSubShl1rEquLoop:
 
@@ -206,7 +206,7 @@ PROLOGUE(mpn_sublsh1_n)
     prefetchnta (Op2,Offs,)
   ')
 
-    mov     (Op2), Limb1        # prepare shifted oct-limb from Op2
+    mov     (Op2), Limb1        C  prepare shifted oct-limb from Op2
     mov     8(Op2), Limb2
     mov     16(Op2), Limb3
     mov     24(Op2), Limb4
@@ -223,8 +223,8 @@ PROLOGUE(mpn_sublsh1_n)
     shrd    $63, Limb7, Limb6
     shrd    $63, Limb8, Limb7
 
-    sahf                        # restore carry
-    mov     (Op1), %rax          # sub shifted Op2 from Op1 with result in Op3
+    sahf                        C  restore carry
+    mov     (Op1), %rax          C  sub shifted Op2 from Op1 with result in Op3
     sbb     Limb0, %rax
     mov     %rax, (Op3)
     mov     8(Op1), %rax
@@ -248,7 +248,7 @@ PROLOGUE(mpn_sublsh1_n)
     mov     56(Op1), %rax
     sbb     Limb7, %rax
     mov     %rax, 56(Op3)
-    lahf                        # remember carry for next round
+    lahf                        C  remember carry for next round
 
     add     $64, Op1
     add     $64, Op2
@@ -260,13 +260,13 @@ PROLOGUE(mpn_sublsh1_n)
     sub     $8, NumLimbs
     jnc     .lSubShl1rEquLoop
 
-    # housekeeping - hand back total carry
+    C  housekeeping - hand back total carry
     shr     $63, Limb0
     sahf
-    adc     $0, Limb0            # Limb0=0/1/2 depending on final carry and shift
+    adc     $0, Limb0            C  Limb0=0/1/2 depending on final carry and shift
     mov     Limb0, %rax
 
-  0:#Exit:
+  0:C Exit:
 
   ifdef(`USE_LINUX64',`
       mov   (%rsp), Limb0

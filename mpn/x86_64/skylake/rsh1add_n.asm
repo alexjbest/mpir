@@ -41,18 +41,18 @@ ifdef(`USE_LINUX64',`
   define(`NumLimbs',  %rcx)
   define(`Op3',   %rdi)
   ifdef(`USE_PREFETCH',`
-    define(`Offs',  %rbp)        # SAVE!
+    define(`Offs',  %rbp)        C  SAVE!
   ')
 
-  define(`Limb0', %rbx)        # SAVE!
+  define(`Limb0', %rbx)        C  SAVE!
   define(`Limb1', %r8)
   define(`Limb2', %r9)
   define(`Limb3', %r10)
   define(`Limb4', %r11)
-  define(`Limb5', %r12)        # SAVE!
-  define(`Limb6', %r13)        # SAVE!
-  define(`Limb7', %r14)        # SAVE!
-  define(`Limb8', %r15)        # SAVE!
+  define(`Limb5', %r12)        C  SAVE!
+  define(`Limb6', %r13)        C  SAVE!
+  define(`Limb7', %r14)        C  SAVE!
+  define(`Limb8', %r15)        C  SAVE!
 ')
 
 ifdef(`USE_WIN64',`
@@ -62,18 +62,18 @@ ifdef(`USE_WIN64',`
   define(`NumLimbs',  %r8)
   define(`Op3',   %r9)
   ifdef(`USE_PREFETCH',`
-    define(`Offs',  %rbp)        # SAVE!
+    define(`Offs',  %rbp)        C  SAVE!
   ')
 
-  define(`Limb0', %rbx)        # SAVE!
-  define(`Limb1', %rdi)        # SAVE!
-  define(`Limb2', %rsi)        # SAVE!
+  define(`Limb0', %rbx)        C  SAVE!
+  define(`Limb1', %rdi)        C  SAVE!
+  define(`Limb2', %rsi)        C  SAVE!
   define(`Limb3', %r10)
   define(`Limb4', %r11)
-  define(`Limb5', %r12)        # SAVE!
-  define(`Limb6', %r13)        # SAVE!
-  define(`Limb7', %r14)        # SAVE!
-  define(`Limb8', %r15)        # SAVE!
+  define(`Limb5', %r12)        C  SAVE!
+  define(`Limb6', %r13)        C  SAVE!
+  define(`Limb7', %r14)        C  SAVE!
+  define(`Limb8', %r15)        C  SAVE!
 
 ')
 
@@ -115,24 +115,24 @@ PROLOGUE(mpn_rsh1add_n)
   ifdef(`USE_PREFETCH',`
     prefetchnta (Op1)
     prefetchnta (Op2)
-    mov     $512, %ebp            # Attn: check if redefining Offs
+    mov     $512, %ebp            C  Attn: check if redefining Offs
   ')
     xor     %rax, %rax
 
-    # prepare shift & addition with loop-unrolling $8
+    C  prepare shift & addition with loop-unrolling $8
     mov     (Op1), Limb0
     add     (Op2), Limb0
-    lahf                        # memorize carry
+    lahf                        C  memorize carry
 
     bt      $0, Limb0
-    adc     $0, %rax            # move low bit into rax
+    adc     $0, %rax            C  move low bit into rax
 
     add     $8, Op1
     add     $8, Op2
     sub     $1, NumLimbs
-    jc      0f    #Exit
+    jc      0f    C Exit
 
-    test    $1, NumLimbs        # a good %r8 / R16 / R32 macro would help!
+    test    $1, NumLimbs        C  a good %r8 / R16 / R32 macro would help!
     jz      .lShr1AddEquTwo
 
     sahf
@@ -150,7 +150,7 @@ PROLOGUE(mpn_rsh1add_n)
 
   .lShr1AddEquTwo:
 
-    test    $2, NumLimbs          # a good %r8 / R16 / R32 macro would help!
+    test    $2, NumLimbs          C  a good %r8 / R16 / R32 macro would help!
     jz      .lShr1AddEquFour
 
     sahf
@@ -172,8 +172,8 @@ PROLOGUE(mpn_rsh1add_n)
 
   .lShr1AddEquFour:
 
-    test    $4, NumLimbs          # a good %r8 / R16 / R32 macro would help!
-    jz      .lShr1AddEquCheck   # enter main-loop =>
+    test    $4, NumLimbs          C  a good %r8 / R16 / R32 macro would help!
+    jz      .lShr1AddEquCheck   C  enter main-loop =>
 
     sahf
     mov     (Op1), Limb1
@@ -199,10 +199,10 @@ PROLOGUE(mpn_rsh1add_n)
     add     $32, Op2
     add     $32, Op3
     mov     Limb4, Limb0
-    jmp     .lShr1AddEquCheck   # enter main-loop =>
+    jmp     .lShr1AddEquCheck   C  enter main-loop =>
 
-    # main loop: <1.3 cycles per limb in L1$
-    # combining elements in multiples of four prooved fastest on Skylake
+    C  main loop: <1.3 cycles per limb in L1$
+    C  combining elements in multiples of four prooved fastest on Skylake
     .align   32
 .lShr1AddEquLoop:
 
@@ -211,8 +211,8 @@ PROLOGUE(mpn_rsh1add_n)
     prefetchnta (Op2,Offs,)
   ')
 
-    sahf                        # restore carry ...
-    mov     (Op1), Limb1        # generate added oct-limb from Op1 and Op2
+    sahf                        C  restore carry ...
+    mov     (Op1), Limb1        C  generate added oct-limb from Op1 and Op2
     mov     8(Op1), Limb2
     mov     16(Op1), Limb3
     mov     24(Op1), Limb4
@@ -228,9 +228,9 @@ PROLOGUE(mpn_rsh1add_n)
     adc     40(Op2), Limb6
     adc     48(Op2), Limb7
     adc     56(Op2), Limb8
-    lahf                        # ... and memorize carry again
+    lahf                        C  ... and memorize carry again
 
-    shrd    $1, Limb1, Limb0     # shift oct-limbs and store in Op3
+    shrd    $1, Limb1, Limb0     C  shift oct-limbs and store in Op3
     shrd    $1, Limb2, Limb1
     shrd    $1, Limb3, Limb2
     shrd    $1, Limb4, Limb3
@@ -257,18 +257,18 @@ PROLOGUE(mpn_rsh1add_n)
     sub     $8, NumLimbs
     jnc     .lShr1AddEquLoop
 
-    # housekeeping - set MSL and return the total carry
+    C  housekeeping - set MSL and return the total carry
     sahf
     rcr     $1, Limb0
     mov     Limb0, (Op3)
 
-    #xor     Limb0, Limb0
-    #adc     Limb0, Limb0
-    #mov     Limb0, %rax
+    C xor     Limb0, Limb0
+    C adc     Limb0, Limb0
+    C mov     Limb0, %rax
 
     xor     %ah, %ah
 
-  0:#Exit:
+  0:C Exit:
 
   ifdef(`USE_LINUX64',`
       mov   (%rsp), Limb0
