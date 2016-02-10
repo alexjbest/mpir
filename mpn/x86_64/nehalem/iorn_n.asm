@@ -26,6 +26,9 @@ C	rax             rdi,   rsi,      rdx,     rcx
 
 C	iorn=  x | ~y  =   ~(~x & y)  = nandn (swap arg)
 
+C  | Architecture | Piledriver |
+C  | Cycles/Limb  |    2.0     |
+
 ASM_START()
 PROLOGUE(mpn_iorn_n)
 mov $3,%r8
