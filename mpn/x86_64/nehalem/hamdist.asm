@@ -21,6 +21,9 @@ dnl  Boston, MA 02110-1301, USA.
 
 include(`../config.m4')
 
+C  | Architecture | Piledriver |
+C  | Cycles/Limb  |    4.2     |
+
 ASM_START()
 PROLOGUE(mpn_hamdist)
 mov $1,%rcx
