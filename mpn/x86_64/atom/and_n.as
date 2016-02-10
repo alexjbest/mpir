@@ -16,7 +16,10 @@
 ;  Boston, MA 02110-1301, USA.
 
 ;	(rdi, rcx) = (rsi, rcx) & (rdx, rcx)
-	
+
+;  | Architecture | Piledriver |
+;  | Cycles/Limb  |    2.8     |
+
 %include 'yasm_mac.inc'
 
     BITS    64
