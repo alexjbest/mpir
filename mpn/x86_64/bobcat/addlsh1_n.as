@@ -17,7 +17,10 @@
 
 ;	(rdi, rcx) = (rsi, rcx) + (rdx, rcx)<<1
 ;	rax = carry
-	
+
+;  | Architecture | Piledriver |
+;  | Cycles/Limb  |    3.5     |
+
 %include 'yasm_mac.inc'
 
     BITS    64
