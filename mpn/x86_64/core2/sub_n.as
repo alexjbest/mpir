@@ -22,6 +22,9 @@
 ;	ret mpn_sub_n(mp_ptr,mp_ptr,mp_ptr,mp_size_t)
 ;	(rdi,rcx)=(rsi,rcx)-(rdx,rcx) return rax=borrow
 
+;  | Architecture | Piledriver |
+;  | Cycles/Limb  |    2.9     |
+
 	GLOBAL_FUNC mpn_sub_n
 	mov     rax, rcx
 	and     rax, 3

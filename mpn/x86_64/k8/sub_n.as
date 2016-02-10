@@ -17,7 +17,10 @@
 
 ;	(rdi,rcx)=(rsi,rcx)-(rdx,rcx)
 ;	rax=borrow
-	
+
+;  | Architecture | Piledriver |
+;  | Cycles/Limb  |    2.9     |
+
 %include 'yasm_mac.inc'
 
     BITS    64
