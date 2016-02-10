@@ -1,36 +1,36 @@
 include(`../config.m4')
 define(`USE_LINUX64',1)
-#define(`USE_PREFETCH',1)
+dnldefine(`USE_PREFETCH',1)
 
-# Copyright (C) 2016, Jens Nurmann
-# All rights reserved.
+dnl Copyright (C) 2016, Jens Nurmann
+dnl All rights reserved.
 
-# ============================================================================
-# lSubShl1rEqu( Op1, Op2: pLimb; const NumLimbs: tCounter; Op3: pLimb ):tBaseVal
-# Linux         %rdi  %rsi               %rdx             %rcx         :%rax
-# Win7          %rcx  %rdx               %r8              %r9          :%rax
-#
-# Description:
-# The function shifts Op2 left one bit, subtracts it from Op1, stores the
-# result in Op3 and hands back the total carry. There is a gain in execution
-# speed compared to separate shift and subtract by interleaving the elementary
-# operations and reducing memory access. The factor depends on the size of the
-# operands (the cache level in which the operands can be handled) and the core
-# used.
-#
-#  Op3 := Op1 - Op2<<1
-#
-# Caveats:
-# - the total carry is in (0..2)!
-#
-# Comments:
-# - Skaylake asm version implemented, tested & benched on $15.10.2015 by jn
-# - on an i7 $6700K per limb saving is $1 cycle in L1$, L2$ and L3$
-# - includes LAHF / SAHF
-# - includes prefetching
+dnl ============================================================================
+dnl lSubShl1rEqu( Op1, Op2: pLimb; const NumLimbs: tCounter; Op3: pLimb ):tBaseVal
+dnl Linux         %rdi  %rsi               %rdx             %rcx         :%rax
+dnl Win7          %rcx  %rdx               %r8              %r9          :%rax
+dnl
+dnl Description:
+dnl The function shifts Op2 left one bit, subtracts it from Op1, stores the
+dnl result in Op3 and hands back the total carry. There is a gain in execution
+dnl speed compared to separate shift and subtract by interleaving the elementary
+dnl operations and reducing memory access. The factor depends on the size of the
+dnl operands (the cache level in which the operands can be handled) and the core
+dnl used.
+dnl
+dnl  Op3 := Op1 - Op2<<1
+dnl
+dnl Caveats:
+dnl - the total carry is in (0..2)!
+dnl
+dnl Comments:
+dnl - Skaylake asm version implemented, tested & benched on $15.10.2015 by jn
+dnl - on an i7 $6700K per limb saving is $1 cycle in L1$, L2$ and L3$
+dnl - includes LAHF / SAHF
+dnl - includes prefetching
 
-C  | Architecture | Piledriver |
-C  | Cycles/Limb  |    4.9     |
+dnl  | Architecture | Piledriver |
+dnl  | Cycles/Limb  |    4.9     |
 
 ifdef(`USE_LINUX64',`
 

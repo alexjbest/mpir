@@ -1,39 +1,39 @@
 include(`../config.m4')
 define(`USE_LINUX64',1)
-#define(`USE_PREFETCH',1)
+dnldefine(`USE_PREFETCH',1)
 
-# Copyright (C) 2016, Jens Nurmann
-# All rights reserved.
+dnl Copyright (C) 2016, Jens Nurmann
+dnl All rights reserved.
 
-# ============================================================================
-# lShr1SubEqu( Op1, Op2: pLimb; const NumLimbs: tCounter; Op3: pLimb ):tBaseVal
-# Linux        %rdi  %rsi               %rdx             %rcx         :%rax
-# Win7         %rcx  %rdx               %r8              %r9          :%rax
-#
-# Description:
-# The function subtracts Op2 from Op1, shifts this right one bit, stores the
-# result in Op3 and hands back the total carry. Though in theory the carry is
-# absorbed by the shift right it is still signalled to the upper layer to
-# indicate an overflow has happened. There is a gain in execution speed
-# compared to separate shift and subtraction by interleaving the elementary
-# operations and reducing memory access. The factor depends on the size of the
-# operands (the cache level in which the operands can be handled) and the core
-# used.
-#
-#  Op3 := (Op1 - Op2)>>1
-#
-# Caveats:
-#
-#
-#
-# Comments:
-# - Skylake asm version implemented, tested & benched on $17.10.2015 by jn
-# - on an i7 $6700K per limb saving is $1 cycle in L1$, L2$ and L3$
-# - includes LAHF / SAHF
-# - includes prefetching
+dnl ============================================================================
+dnl lShr1SubEqu( Op1, Op2: pLimb; const NumLimbs: tCounter; Op3: pLimb ):tBaseVal
+dnl Linux        %rdi  %rsi               %rdx             %rcx         :%rax
+dnl Win7         %rcx  %rdx               %r8              %r9          :%rax
+dnl
+dnl Description:
+dnl The function subtracts Op2 from Op1, shifts this right one bit, stores the
+dnl result in Op3 and hands back the total carry. Though in theory the carry is
+dnl absorbed by the shift right it is still signalled to the upper layer to
+dnl indicate an overflow has happened. There is a gain in execution speed
+dnl compared to separate shift and subtraction by interleaving the elementary
+dnl operations and reducing memory access. The factor depends on the size of the
+dnl operands (the cache level in which the operands can be handled) and the core
+dnl used.
+dnl
+dnl  Op3 := (Op1 - Op2)>>1
+dnl
+dnl Caveats:
+dnl
+dnl
+dnl
+dnl Comments:
+dnl - Skylake asm version implemented, tested & benched on $17.10.2015 by jn
+dnl - on an i7 $6700K per limb saving is $1 cycle in L1$, L2$ and L3$
+dnl - includes LAHF / SAHF
+dnl - includes prefetching
 
-C  | Architecture | Piledriver |
-C  | Cycles/Limb  |    5.1     |
+dnl  | Architecture | Piledriver |
+dnl  | Cycles/Limb  |    5.1     |
 
 ifdef(`USE_LINUX64',`
 
