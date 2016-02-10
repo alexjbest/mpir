@@ -23,6 +23,9 @@
 ; return bottom bit of difference
 ; subtraction treated as two compliment
 
+;  | Architecture | Piledriver |
+;  | Cycles/Limb  |    3.6     |
+
 	GLOBAL_FUNC mpn_rsh1sub_n
 	lea     rdi, [rdi+rcx*8-32]
 	lea     rsi, [rsi+rcx*8-32]
