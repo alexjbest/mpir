@@ -21,6 +21,9 @@
 
 ;	(rdi,rcx)=((rsi,rcx)+(rdx,rcx))/2 return low bit of sum
 
+;  | Architecture | Piledriver |
+;  | Cycles/Limb  |    3.6     |
+
 	GLOBAL_FUNC mpn_rsh1add_n
 	lea     rdi, [rdi+rcx*8-32]
 	lea     rsi, [rsi+rcx*8-32]
