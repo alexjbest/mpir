@@ -49,6 +49,9 @@
 ;  low limb of the calculation.  Note values other than 1 or 0 here will
 ;  lead to garbage results.
 
+;  | Architecture | Piledriver |
+;  | Cycles/Limb  |    2.7     |
+
 %include 'yasm_mac.inc'
 
 %define dst       rdi   ; destination pointer

@@ -17,10 +17,13 @@
 ;  to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 ;  Boston, MA 02110-1301, USA.
 
-%include 'yasm_mac.inc'
-
 ;	rax=mpn_add_n(mp_ptr rdi ,mp_ptr rsi ,mp_ptr rdx ,mp_size_t rcx)
 ;	(rdi,rcx)=(rsi,rcx)+(rdx,rcx)  return rax=carry
+
+;  | Architecture | Piledriver |
+;  | Cycles/Limb  |    2.9     |
+
+%include 'yasm_mac.inc'
 
 	GLOBAL_FUNC mpn_add_n
 	mov     rax, rcx
