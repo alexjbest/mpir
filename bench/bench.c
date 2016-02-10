@@ -200,7 +200,7 @@ main (int argc, char *argv[])
   }
 
   printf("{");
-  for (limbs = (MAX_LIMBS % INCREMENT); limbs <= MAX_LIMBS; limbs = limbs + INCREMENT)
+  for (limbs = ((MAX_LIMBS - 1) % INCREMENT) + 1; limbs <= MAX_LIMBS; limbs = limbs + INCREMENT)
   {
     avg_mins = 0;
 
