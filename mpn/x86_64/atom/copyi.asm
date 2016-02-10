@@ -24,6 +24,9 @@ include(`../config.m4')
 C	ret mpn_copyi(mp_ptr,mp_ptr,mp_size_t)
 C	rax             rdi,   rsi,      rdx
 
+C  | Architecture | Piledriver |
+C  | Cycles/Limb  |    1.3     |
+
 ASM_START()
 PROLOGUE(mpn_copyi)
 cmp $0,%rdx		#needed for case n=0

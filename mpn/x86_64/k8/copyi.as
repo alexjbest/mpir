@@ -22,6 +22,9 @@
 ;	mpn_copyi(mp_ptr rdi ,mp_ptr rsi ,mp_size_t rdx)
 ;	(rdi,rdx)=(rsi,rdx)
 
+;  | Architecture | Piledriver |
+;  | Cycles/Limb  |    1.5     |
+
 	GLOBAL_FUNC mpn_copyi
 	sub     rdx, 4
 	jl      L_skiplp
