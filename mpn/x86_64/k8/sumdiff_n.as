@@ -17,9 +17,9 @@
 
 ;	(rdi, r8) = (rdx, r8) + (rcx, r8)  (rsi, r8) = (rdx, r8) - (rcx, r8)
 ;	return 2*add_carry + sub_borrow
-	
-;  | Architecture | Piledriver |
-;  | Cycles/Limb  |    5.0     |
+
+;  | Architecture | Piledriver |  K10-2  |
+;  | Cycles/Limb  |    5.0     |   2.8   |
 
 %include 'yasm_mac.inc'
 
