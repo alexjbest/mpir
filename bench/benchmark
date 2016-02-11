@@ -46,7 +46,7 @@ do
 		exit
 	fi
 	echo "copying: $file"
-	SUM=$(grep -v '^$\|^\s*\dnl\|^\s*\C\|^\s*\#\|^\s*\;' $file | tr -d "[:blank:]" |md5sum | cut -c 1-32)
+	SUM=$(tr -d "[:blank:]" < $file | grep -v '^$\|^\s*\dnl\|^\s*\C\|^\s*\#\|^\s*\;' | md5sum | cut -c 1-32)
 	#TODO could use different comment filters for different filetypes
 	cp $file "benched-functions/$SUM-$(basename $file)"
 	echo "hash: $SUM"
@@ -54,7 +54,7 @@ do
 	echo "compiling: $file"
 	m4 $file > tmp/func.s #TODO make sure m4 doesn't mess with any .as files
 	m4 -Dfuncname=__g$FUNC -D$FORMAT bench.c > tmp/bench.c
-	gcc -c -I.. -o tmp/bench.o tmp/bench.c
+	gcc -c -I.. -o tmp/bench.o tmp/bench.c # TODO move this out of loop
 	if [[ $file == *.asm ]]
 	then
 		gcc -c -I.. -o tmp/func.o tmp/func.s
