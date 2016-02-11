@@ -75,4 +75,6 @@ do
 
 done
 
+echo -e "\n"
+
 #rm -rf tmp
