@@ -24,8 +24,8 @@ include(`../config.m4')
 C	ret mpn_popcount(mp_ptr,mp_size_t)
 C	rax               rdi,   rsi
 
-C  | Architecture | Piledriver |
-C  | Cycles/Limb  |    5.2     |
+C  | Architecture | Piledriver |  K10-2  |
+C  | Cycles/Limb  |    5.2     |   4.7   |
 
 ASM_START()
 PROLOGUE(mpn_popcount)
