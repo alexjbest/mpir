@@ -18,8 +18,8 @@
 ;	(rdi,rcx)=(rsi,rcx)-(rdx,rcx)
 ;	rax=borrow
 
-;  | Architecture | Piledriver |
-;  | Cycles/Limb  |    2.9     |
+;  | Architecture | Piledriver |  K10-2  |
+;  | Cycles/Limb  |    2.9     |   1.5   |
 
 %include 'yasm_mac.inc'
 
