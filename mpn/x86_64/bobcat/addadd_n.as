@@ -21,8 +21,8 @@
 
 ;	(rdi,r8)=(rsi,r8)+(rdx,r8)+(rcx,r8) return carry+carry
 
-;  | Architecture | Piledriver |
-;  | Cycles/Limb  |    4.0     |
+;  | Architecture | Piledriver |  K10-2  |
+;  | Cycles/Limb  |    4.0     |   2.0   |
 
 	GLOBAL_FUNC mpn_addadd_n
 	lea     rdx, [rdx+r8*8-56]
