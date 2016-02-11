@@ -1,67 +1,67 @@
 #!/bin/bash
 # TODO should all funcs with return values have r??
-./benchmark mpn_add_n ppps ../mpn/x86_64/k8/add_n.as ../mpn/x86_64/sandybridge/add_n.as ../mpn/x86_64/nehalem/add_n.as ../mpn/x86_64/core2/add_n.as ../mpn/x86_64/netburst/add_n.as ../mpn/x86_64/atom/add_n.as
-./benchmark mpn_addadd_n pppps ../mpn/addadd_n.as ../mpn/x86_64/k8/addadd_n.as ../mpn/x86_64/bobcat/addadd_n.as ../mpn/x86_64/nehalem/addadd_n.asm ../mpn/x86_64/core2/addadd_n.asm
-./benchmark mpn_addlsh1_n ppps ../mpn/addlsh1_n.asm ../mpn/x86_64/k8/addlsh1_n.as ../mpn/x86_64/bobcat/addlsh1_n.as ../mpn/x86_64/bulldozer/piledriver/addlsh1_n.asm ../mpn/x86_64/atom/addlsh1_n.as
-./benchmark mpn_addsub_n pppps ../mpn/addsub_n.as ../mpn/x86_64/k8/addsub_n.as ../mpn/x86_64/bobcat/addsub_n.as ../mpn/x86_64/nehalem/addsub_n.asm ../mpn/x86_64/core2/addsub_n.asm
-./benchmark mpn_and_n ppps ../mpn/and_n.asm ../mpn/x86_64/k8/and_n.asm ../mpn/x86_64/sandybridge/and_n.asm ../mpn/x86_64/bobcat/and_n.asm ../mpn/x86_64/nehalem/and_n.asm ../mpn/x86_64/core2/and_n.as ../mpn/x86_64/netburst/and_n.as ../mpn/x86_64/atom/and_n.as
-./benchmark mpn_andn_n ppps ../mpn/andn_n.as ../mpn/x86_64/k8/andn_n.as ../mpn/x86_64/sandybridge/andn_n.asm ../mpn/x86_64/bobcat/andn_n.as ../mpn/x86_64/nehalem/andn_n.asm ../mpn/x86_64/core2/andn_n.as ../mpn/x86_64/netburst/andn_n.as ../mpn/x86_64/atom/andn_n.as
-./benchmark mpn_com_n pps ../mpn/com_n.as ../mpn/x86_64/k8/com_n.as ../mpn/x86_64/sandybridge/com_n.asm ../mpn/x86_64/bobcat/com_n.as ../mpn/x86_64/nehalem/com_n.asm ../mpn/x86_64/core2/com_n.as ../mpn/x86_64/netburst/com_n.as ../mpn/x86_64/atom/com_n.as
-./benchmark mpn_copyd pps ../mpn/copyd.as ../mpn/x86_64/k8/copyd.as ../mpn/x86_64/sandybridge/copyd.asm ../mpn/x86_64/bobcat/copyd.as ../mpn/x86_64/nehalem/copyd.asm ../mpn/x86_64/core2/copyd.as ../mpn/x86_64/atom/copyd.as
-./benchmark mpn_copyi pps ../mpn/copyi.as ../mpn/x86_64/k8/copyi.as ../mpn/x86_64/sandybridge/copyi.asm ../mpn/x86_64/bobcat/copyi.as ../mpn/x86_64/nehalem/copyi.asm ../mpn/x86_64/core2/copyi.asm ../mpn/x86_64/atom/copyi.asm
-./benchmark mpn_double ps ../mpn/double.asm ../mpn/x86_64/k8/double.asm
-./benchmark mpn_half ps ../mpn/half.asm ../mpn/x86_64/k8/half.asm
-./benchmark mpn_hamdist rpps ../mpn/hamdist.asm ../mpn/x86_64/k8/hamdist.asm ../mpn/x86_64/k8/k10/hamdist.asm ../mpn/x86_64/sandybridge/hamdist.asm ../mpn/x86_64/bobcat/hamdist.asm ../mpn/x86_64/nehalem/hamdist.asm ../mpn/x86_64/core2/hamdist.asm
-./benchmark mpn_ior_n ppps ../mpn/ior_n.asm ../mpn/x86_64/k8/ior_n.asm ../mpn/x86_64/sandybridge/ior_n.asm ../mpn/x86_64/bobcat/ior_n.asm ../mpn/x86_64/nehalem/ior_n.asm ../mpn/x86_64/core2/ior_n.as ../mpn/x86_64/netburst/ior_n.as ../mpn/x86_64/atom/ior_n.as
-./benchmark mpn_iorn_n ppps ../mpn/iorn_n.as ../mpn/x86_64/k8/iorn_n.as ../mpn/x86_64/sandybridge/iorn_n.asm ../mpn/x86_64/bobcat/iorn_n.as ../mpn/x86_64/nehalem/iorn_n.asm ../mpn/x86_64/core2/iorn_n.as ../mpn/x86_64/netburst/iorn_n.as ../mpn/x86_64/atom/iorn_n.as
-./benchmark mpn_lshift1 pps ../mpn/lshift1.as ../mpn/x86_64/k8/lshift1.as ../mpn/x86_64/sandybridge/lshift1.as ../mpn/x86_64/bobcat/lshift1.as ../mpn/x86_64/atom/lshift1.as
-./benchmark mpn_nand_n ppps ../mpn/nand_n.asm ../mpn/x86_64/k8/nand_n.asm ../mpn/x86_64/sandybridge/nand_n.asm ../mpn/x86_64/bobcat/nand_n.asm ../mpn/x86_64/nehalem/nand_n.asm ../mpn/x86_64/core2/nand_n.as ../mpn/x86_64/netburst/nand_n.as ../mpn/x86_64/atom/nand_n.as
-./benchmark mpn_nior_n ppps ../mpn/nior_n.asm ../mpn/x86_64/k8/nior_n.asm ../mpn/x86_64/sandybridge/nior_n.asm ../mpn/x86_64/bobcat/nior_n.asm ../mpn/x86_64/nehalem/nior_n.asm ../mpn/x86_64/core2/nior_n.as ../mpn/x86_64/netburst/nior_n.as ../mpn/x86_64/atom/nior_n.as
-./benchmark mpn_not ps ../mpn/not.asm ../mpn/x86_64/k8/not.asm ../mpn/x86_64/bobcat/not.asm
-./benchmark mpn_popcount rps ../mpn/popcount.asm ../mpn/x86_64/k8/popcount.asm ../mpn/x86_64/k8/k10/popcount.asm ../mpn/x86_64/sandybridge/popcount.asm ../mpn/x86_64/bobcat/popcount.asm ../mpn/x86_64/nehalem/popcount.asm ../mpn/x86_64/core2/popcount.asm
-./benchmark mpn_rsh1add_n ppps ../mpn/rsh1add_n.asm ../mpn/x86_64/k8/rsh1add_n.as ../mpn/x86_64/bobcat/rsh1add_n.as ../mpn/x86_64/nehalem/rsh1add_n.as ../mpn/x86_64/core2/rsh1add_n.as ../mpn/x86_64/bulldozer/piledriver/rsh1add_n.asm ../mpn/x86_64/atom/rsh1add_n.as
-./benchmark mpn_rsh1sub_n ppps ../mpn/rsh1sub_n.asm ../mpn/x86_64/k8/rsh1sub_n.as ../mpn/x86_64/bobcat/rsh1sub_n.as ../mpn/x86_64/nehalem/rsh1sub_n.as ../mpn/x86_64/core2/rsh1sub_n.as ../mpn/x86_64/bulldozer/piledriver/rsh1sub_n.asm ../mpn/x86_64/atom/rsh1sub_n.as
-./benchmark mpn_rshift1 pps ../mpn/rshift1.as ../mpn/x86_64/k8/rshift1.as
-./benchmark mpn_sub_n ppps ../mpn/sub_n.as ../mpn/x86_64/k8/sub_n.as ../mpn/x86_64/sandybridge/sub_n.as ../mpn/x86_64/bobcat/sub_n.as ../mpn/x86_64/nehalem/sub_n.as ../mpn/x86_64/core2/sub_n.as ../mpn/x86_64/netburst/sub_n.as ../mpn/x86_64/atom/sub_n.as
-./benchmark mpn_subadd_n pppps ../mpn/subadd_n.as ../mpn/x86_64/k8/subadd_n.as ../mpn/x86_64/bobcat/subadd_n.as ../mpn/x86_64/nehalem/subadd_n.asm ../mpn/x86_64/core2/subadd_n.asm
-./benchmark mpn_sublsh1_n ppps ../mpn/sublsh1_n.asm ../mpn/x86_64/k8/sublsh1_n.as ../mpn/x86_64/bobcat/sublsh1_n.as ../mpn/x86_64/nehalem/sublsh1_n.as ../mpn/x86_64/core2/sublsh1_n.as ../mpn/x86_64/bulldozer/piledriver/sublsh1_n.asm ../mpn/x86_64/atom/sublsh1_n.as
-./benchmark mpn_sumdiff_n pppps ../mpn/sumdiff_n.as ../mpn/x86_64/k8/sumdiff_n.as ../mpn/x86_64/bobcat/sumdiff_n.as ../mpn/x86_64/nehalem/sumdiff_n.asm ../mpn/x86_64/core2/sumdiff_n.asm ../mpn/x86_64/core2/penryn/sumdiff_n.asm
-./benchmark mpn_xnor_n ppps ../mpn/xnor_n.as ../mpn/x86_64/k8/xnor_n.as ../mpn/x86_64/sandybridge/xnor_n.asm ../mpn/x86_64/bobcat/xnor_n.as ../mpn/x86_64/nehalem/xnor_n.asm ../mpn/x86_64/core2/xnor_n.as ../mpn/x86_64/netburst/xnor_n.as ../mpn/x86_64/atom/xnor_n.as
-./benchmark mpn_xor_n ppps ../mpn/xor_n.asm ../mpn/x86_64/k8/xor_n.asm ../mpn/x86_64/sandybridge/xor_n.asm ../mpn/x86_64/bobcat/xor_n.asm ../mpn/x86_64/nehalem/xor_n.asm ../mpn/x86_64/core2/xor_n.as ../mpn/x86_64/netburst/xor_n.as ../mpn/x86_64/atom/xor_n.as
+./benchmark mpn_add_n ppps ../mpn/add_n.as* ../mpn/x86_64/k8/add_n.as ../mpn/x86_64/sandybridge/add_n.as ../mpn/x86_64/nehalem/add_n.as ../mpn/x86_64/core2/add_n.as ../mpn/x86_64/netburst/add_n.as ../mpn/x86_64/atom/add_n.as
+./benchmark mpn_addadd_n pppps ../mpn/addadd_n.as* ../mpn/x86_64/k8/addadd_n.as ../mpn/x86_64/bobcat/addadd_n.as ../mpn/x86_64/nehalem/addadd_n.asm ../mpn/x86_64/core2/addadd_n.asm
+./benchmark mpn_addlsh1_n ppps ../mpn/addlsh1_n.as* ../mpn/x86_64/k8/addlsh1_n.as ../mpn/x86_64/bobcat/addlsh1_n.as ../mpn/x86_64/bulldozer/piledriver/addlsh1_n.asm ../mpn/x86_64/atom/addlsh1_n.as
+./benchmark mpn_addsub_n pppps ../mpn/addsub_n.as* ../mpn/x86_64/k8/addsub_n.as ../mpn/x86_64/bobcat/addsub_n.as ../mpn/x86_64/nehalem/addsub_n.asm ../mpn/x86_64/core2/addsub_n.asm
+./benchmark mpn_and_n ppps ../mpn/and_n.as* ../mpn/x86_64/k8/and_n.asm ../mpn/x86_64/sandybridge/and_n.asm ../mpn/x86_64/bobcat/and_n.asm ../mpn/x86_64/nehalem/and_n.asm ../mpn/x86_64/core2/and_n.as ../mpn/x86_64/netburst/and_n.as ../mpn/x86_64/atom/and_n.as
+./benchmark mpn_andn_n ppps ../mpn/andn_n.as* ../mpn/x86_64/k8/andn_n.as ../mpn/x86_64/sandybridge/andn_n.asm ../mpn/x86_64/bobcat/andn_n.as ../mpn/x86_64/nehalem/andn_n.asm ../mpn/x86_64/core2/andn_n.as ../mpn/x86_64/netburst/andn_n.as ../mpn/x86_64/atom/andn_n.as
+./benchmark mpn_com_n pps ../mpn/com_n.as* ../mpn/x86_64/k8/com_n.as ../mpn/x86_64/sandybridge/com_n.asm ../mpn/x86_64/bobcat/com_n.as ../mpn/x86_64/nehalem/com_n.asm ../mpn/x86_64/core2/com_n.as ../mpn/x86_64/netburst/com_n.as ../mpn/x86_64/atom/com_n.as
+./benchmark mpn_copyd pps ../mpn/copyd.as* ../mpn/x86_64/k8/copyd.as ../mpn/x86_64/sandybridge/copyd.asm ../mpn/x86_64/bobcat/copyd.as ../mpn/x86_64/nehalem/copyd.asm ../mpn/x86_64/core2/copyd.as ../mpn/x86_64/atom/copyd.as
+./benchmark mpn_copyi pps ../mpn/copyi.as* ../mpn/x86_64/k8/copyi.as ../mpn/x86_64/sandybridge/copyi.asm ../mpn/x86_64/bobcat/copyi.as ../mpn/x86_64/nehalem/copyi.asm ../mpn/x86_64/core2/copyi.asm ../mpn/x86_64/atom/copyi.asm
+./benchmark mpn_double ps ../mpn/double.as* ../mpn/x86_64/k8/double.asm
+./benchmark mpn_half ps ../mpn/half.as* ../mpn/x86_64/k8/half.asm
+./benchmark mpn_hamdist rpps ../mpn/hamdist.as* ../mpn/x86_64/k8/hamdist.asm ../mpn/x86_64/k8/k10/hamdist.asm ../mpn/x86_64/sandybridge/hamdist.asm ../mpn/x86_64/bobcat/hamdist.asm ../mpn/x86_64/nehalem/hamdist.asm ../mpn/x86_64/core2/hamdist.asm
+./benchmark mpn_ior_n ppps ../mpn/ior_n.as* ../mpn/x86_64/k8/ior_n.asm ../mpn/x86_64/sandybridge/ior_n.asm ../mpn/x86_64/bobcat/ior_n.asm ../mpn/x86_64/nehalem/ior_n.asm ../mpn/x86_64/core2/ior_n.as ../mpn/x86_64/netburst/ior_n.as ../mpn/x86_64/atom/ior_n.as
+./benchmark mpn_iorn_n ppps ../mpn/iorn_n.as* ../mpn/x86_64/k8/iorn_n.as ../mpn/x86_64/sandybridge/iorn_n.asm ../mpn/x86_64/bobcat/iorn_n.as ../mpn/x86_64/nehalem/iorn_n.asm ../mpn/x86_64/core2/iorn_n.as ../mpn/x86_64/netburst/iorn_n.as ../mpn/x86_64/atom/iorn_n.as
+./benchmark mpn_lshift1 pps ../mpn/lshift1.as* ../mpn/x86_64/k8/lshift1.as ../mpn/x86_64/sandybridge/lshift1.as ../mpn/x86_64/bobcat/lshift1.as ../mpn/x86_64/atom/lshift1.as
+./benchmark mpn_nand_n ppps ../mpn/nand_n.as* ../mpn/x86_64/k8/nand_n.asm ../mpn/x86_64/sandybridge/nand_n.asm ../mpn/x86_64/bobcat/nand_n.asm ../mpn/x86_64/nehalem/nand_n.asm ../mpn/x86_64/core2/nand_n.as ../mpn/x86_64/netburst/nand_n.as ../mpn/x86_64/atom/nand_n.as
+./benchmark mpn_nior_n ppps ../mpn/nior_n.as* ../mpn/x86_64/k8/nior_n.asm ../mpn/x86_64/sandybridge/nior_n.asm ../mpn/x86_64/bobcat/nior_n.asm ../mpn/x86_64/nehalem/nior_n.asm ../mpn/x86_64/core2/nior_n.as ../mpn/x86_64/netburst/nior_n.as ../mpn/x86_64/atom/nior_n.as
+./benchmark mpn_not ps ../mpn/not.as* ../mpn/x86_64/k8/not.asm ../mpn/x86_64/bobcat/not.asm
+./benchmark mpn_popcount rps ../mpn/popcount.as* ../mpn/x86_64/k8/popcount.asm ../mpn/x86_64/k8/k10/popcount.asm ../mpn/x86_64/sandybridge/popcount.asm ../mpn/x86_64/bobcat/popcount.asm ../mpn/x86_64/nehalem/popcount.asm ../mpn/x86_64/core2/popcount.asm
+./benchmark mpn_rsh1add_n ppps ../mpn/rsh1add_n.as* ../mpn/x86_64/k8/rsh1add_n.as ../mpn/x86_64/bobcat/rsh1add_n.as ../mpn/x86_64/nehalem/rsh1add_n.as ../mpn/x86_64/core2/rsh1add_n.as ../mpn/x86_64/bulldozer/piledriver/rsh1add_n.asm ../mpn/x86_64/atom/rsh1add_n.as
+./benchmark mpn_rsh1sub_n ppps ../mpn/rsh1sub_n.as* ../mpn/x86_64/k8/rsh1sub_n.as ../mpn/x86_64/bobcat/rsh1sub_n.as ../mpn/x86_64/nehalem/rsh1sub_n.as ../mpn/x86_64/core2/rsh1sub_n.as ../mpn/x86_64/bulldozer/piledriver/rsh1sub_n.asm ../mpn/x86_64/atom/rsh1sub_n.as
+./benchmark mpn_rshift1 pps ../mpn/rshift1.as* ../mpn/x86_64/k8/rshift1.as
+./benchmark mpn_sub_n ppps ../mpn/sub_n.as* ../mpn/x86_64/k8/sub_n.as ../mpn/x86_64/sandybridge/sub_n.as ../mpn/x86_64/bobcat/sub_n.as ../mpn/x86_64/nehalem/sub_n.as ../mpn/x86_64/core2/sub_n.as ../mpn/x86_64/netburst/sub_n.as ../mpn/x86_64/atom/sub_n.as
+./benchmark mpn_subadd_n pppps ../mpn/subadd_n.as* ../mpn/x86_64/k8/subadd_n.as ../mpn/x86_64/bobcat/subadd_n.as ../mpn/x86_64/nehalem/subadd_n.asm ../mpn/x86_64/core2/subadd_n.asm
+./benchmark mpn_sublsh1_n ppps ../mpn/sublsh1_n.as* ../mpn/x86_64/k8/sublsh1_n.as ../mpn/x86_64/bobcat/sublsh1_n.as ../mpn/x86_64/nehalem/sublsh1_n.as ../mpn/x86_64/core2/sublsh1_n.as ../mpn/x86_64/bulldozer/piledriver/sublsh1_n.asm ../mpn/x86_64/atom/sublsh1_n.as
+./benchmark mpn_sumdiff_n pppps ../mpn/sumdiff_n.as* ../mpn/x86_64/k8/sumdiff_n.as ../mpn/x86_64/bobcat/sumdiff_n.as ../mpn/x86_64/nehalem/sumdiff_n.asm ../mpn/x86_64/core2/sumdiff_n.asm ../mpn/x86_64/core2/penryn/sumdiff_n.asm
+./benchmark mpn_xnor_n ppps ../mpn/xnor_n.as* ../mpn/x86_64/k8/xnor_n.as ../mpn/x86_64/sandybridge/xnor_n.asm ../mpn/x86_64/bobcat/xnor_n.as ../mpn/x86_64/nehalem/xnor_n.asm ../mpn/x86_64/core2/xnor_n.as ../mpn/x86_64/netburst/xnor_n.as ../mpn/x86_64/atom/xnor_n.as
+./benchmark mpn_xor_n ppps ../mpn/xor_n.as* ../mpn/x86_64/k8/xor_n.asm ../mpn/x86_64/sandybridge/xor_n.asm ../mpn/x86_64/bobcat/xor_n.asm ../mpn/x86_64/nehalem/xor_n.asm ../mpn/x86_64/core2/xor_n.as ../mpn/x86_64/netburst/xor_n.as ../mpn/x86_64/atom/xor_n.as
 
-#../mpn/add_err1_n.asm
-#../mpn/add_err2_n.asm
-#../mpn/addlsh_n.asm
-#../mpn/addmul_1.asm
-#../mpn/addmul_2.as
-#../mpn/divexact_by3c.as
-#../mpn/divexact_byff.as
-#../mpn/divexact_byfobm1.as
-#../mpn/divrem_2.as
-#../mpn/divrem_euclidean_qr_1.as
-#../mpn/divrem_euclidean_qr_2.as
-#../mpn/divrem_hensel_qr_1_1.asm
-#../mpn/divrem_hensel_qr_1_2.asm
-#../mpn/divrem_hensel_r_1.asm
-#../mpn/karaadd.asm
-#../mpn/karasub.asm
-#../mpn/lshift.as
-#../mpn/lshiftc.asm
-#../mpn/mod_1_1.asm
-#../mpn/mod_1_2.asm
-#../mpn/mod_1_3.asm
-#../mpn/modexact_1c_odd.as
-#../mpn/mul_1.asm
-#../mpn/mul_2.as
-#../mpn/mul_basecase.as
-#../mpn/mulmid_basecase.asm
-#../mpn/redc_1.as
-#../mpn/rsh_divrem_hensel_qr_1_1.asm
-#../mpn/rsh_divrem_hensel_qr_1_2.asm
-#../mpn/rshift.as
-#../mpn/sqr_basecase.asm
-#../mpn/store.asm
-#../mpn/sub_err1_n.asm
-#../mpn/sub_err2_n.asm
-#../mpn/sublsh_n.asm
-#../mpn/submul_1.asm
+#../mpn/add_err1_n.as*
+#../mpn/add_err2_n.as*
+#../mpn/addlsh_n.as*
+#../mpn/addmul_1.as*
+#../mpn/addmul_2.as*
+#../mpn/divexact_by3c.as*
+#../mpn/divexact_byff.as*
+#../mpn/divexact_byfobm1.as*
+#../mpn/divrem_2.as*
+#../mpn/divrem_euclidean_qr_1.as*
+#../mpn/divrem_euclidean_qr_2.as*
+#../mpn/divrem_hensel_qr_1_1.as*
+#../mpn/divrem_hensel_qr_1_2.as*
+#../mpn/divrem_hensel_r_1.as*
+#../mpn/karaadd.as*
+#../mpn/karasub.as*
+#../mpn/lshift.as*
+#../mpn/lshiftc.as*
+#../mpn/mod_1_1.as*
+#../mpn/mod_1_2.as*
+#../mpn/mod_1_3.as*
+#../mpn/modexact_1c_odd.as*
+#../mpn/mul_1.as*
+#../mpn/mul_2.as*
+#../mpn/mul_basecase.as*
+#../mpn/mulmid_basecase.as*
+#../mpn/redc_1.as*
+#../mpn/rsh_divrem_hensel_qr_1_1.as*
+#../mpn/rsh_divrem_hensel_qr_1_2.as*
+#../mpn/rshift.as*
+#../mpn/sqr_basecase.as*
+#../mpn/store.as*
+#../mpn/sub_err1_n.as*
+#../mpn/sub_err2_n.as*
+#../mpn/sublsh_n.as*
+#../mpn/submul_1.as*
