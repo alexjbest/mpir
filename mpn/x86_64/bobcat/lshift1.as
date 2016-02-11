@@ -18,8 +18,8 @@
 ;	(rdi,rdx) = (rsi,rdx)<<1
 ;	rax = carry
 
-;  | Architecture | Piledriver |
-;  | Cycles/Limb  |    1.6     |
+;  | Architecture | Piledriver |  K10-2  |
+;  | Cycles/Limb  |    1.6     |   1.2   |
 
 %include 'yasm_mac.inc'
 
