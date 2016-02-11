@@ -24,8 +24,8 @@ include(`../config.m4')
 C	ret mpn_com_n(mp_ptr,mp_ptr,mp_size_t)
 C	rax             rdi,   rsi,      rdx
 
-C  | Architecture | Piledriver |
-C  | Cycles/Limb  |    1.3     |
+C  | Architecture | Piledriver |  K10-2  |
+C  | Cycles/Limb  |    1.3     |   1.3   |
 
 ASM_START()
 PROLOGUE(mpn_com_n)
