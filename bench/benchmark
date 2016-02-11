@@ -39,6 +39,9 @@ fi
 CPU=$(cat /proc/cpuinfo | grep "model name" -m1 | cut -d: -f2)
 GUESS=$(../config.guess)
 
+m4 -Dfuncname=__g$FUNC -D$FORMAT bench.c > tmp/bench.c
+gcc -c -I.. -o tmp/bench.o tmp/bench.c
+
 for file in ${FILES[@]}
 do
 	if [[ ! -f $file ]] ; then
@@ -52,17 +55,16 @@ do
 	echo "hash: $SUM"
 
 	echo "compiling: $file"
-	m4 $file > tmp/func.s #TODO make sure m4 doesn't mess with any .as files
-	m4 -Dfuncname=__g$FUNC -D$FORMAT bench.c > tmp/bench.c
-	gcc -c -I.. -o tmp/bench.o tmp/bench.c # TODO move this out of loop
 	if [[ $file == *.asm ]]
 	then
+		m4 $file > tmp/func.s
 		gcc -c -I.. -o tmp/func.o tmp/func.s
 	elif [[ $file == *.as ]]
 	then
+		cp $file tmp/func.s
 		../yasm/yasm -f elf64 -I .. -o tmp/func.o tmp/func.s
 	fi
-	gcc tmp/bench.o tmp/func.o -L/home/best/lib/ -Wl,-rpath,/home/best/lib/ -lmpir -lgmp -o tmp/bench
+	gcc tmp/bench.o tmp/func.o -L/home/best/mpir/.libs/ -Wl,-rpath,/home/best/mpir/.libs/ -lmpir -o tmp/bench
 
 	if [[ $BENCHLINE != "" ]]
 	then
