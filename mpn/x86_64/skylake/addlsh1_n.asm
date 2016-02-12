@@ -29,8 +29,8 @@ dnl - on an i7 $6700K per limb saving is $1 cycle in L1$, L2$ and L3$
 dnl - includes LAHF / SAHF
 dnl - includes prefetching
 
-dnl  | Architecture | Piledriver |
-dnl  | Cycles/Limb  |    4.6     |
+dnl  | Architecture | Piledriver |  K10-2  |
+dnl  | Cycles/Limb  |    4.6     |   3.9   |
 
 
 ifdef(`USE_LINUX64',`
