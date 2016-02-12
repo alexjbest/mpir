@@ -20,8 +20,8 @@
 ;	(rdi, rcx) = (rsi, rcx) - (rdx, rcx)<<1
 ;	rax = borrow
 
-;  | Architecture | Piledriver |
-;  | Cycles/Limb  |    3.7     |
+;  | Architecture | Piledriver |  K10-2  |
+;  | Cycles/Limb  |    3.7     |   2.3   |
 
     BITS 64
     

@@ -21,8 +21,8 @@
 
 ;	ret mpn_sublsh1_n(mp_ptr,mp_ptr,mp_ptr,mp_size_t)
 
-;  | Architecture | Piledriver |
-;  | Cycles/Limb  |    3.5     |
+;  | Architecture | Piledriver |  K10-2  |
+;  | Cycles/Limb  |    3.5     |   2.0   |
 
 	GLOBAL_FUNC mpn_sublsh1_n
 	push    rbx
