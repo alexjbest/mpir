@@ -17,8 +17,8 @@
 
 ;	(rdi, rcx) = (rsi, rcx)| ( rdx, rcx)	
 
-;  | Architecture | Piledriver |
-;  | Cycles/Limb  |    2.8     |
+;  | Architecture | Piledriver |  K10-2  |
+;  | Cycles/Limb  |    2.8     |   1.9   |
 
 %include 'yasm_mac.inc'
 
