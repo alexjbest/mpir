@@ -22,6 +22,9 @@
 ;	mpn_copyd(mp_ptr rdi,mp_ptr rsi,mp_size_t rdx)
 ;	(rdi,rdx)=(rsi,rdx)
 
+;  | Architecture |  K10-2  |
+;  | Cycles/Limb  |   1.0   |
+
 	GLOBAL_FUNC mpn_copyd
 	lea     rsi, [rsi+rdx*8-8]
 	lea     rdi, [rdi+rdx*8-8]

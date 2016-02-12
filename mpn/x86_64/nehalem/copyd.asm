@@ -24,6 +24,9 @@ include(`../config.m4')
 C	ret mpn_copyd(mp_ptr,mp_ptr,mp_size_t)
 C	rax             rdi,   rsi,      rdx
 
+C  | Architecture |  K10-2  |
+C  | Cycles/Limb  |   1.3   |
+
 ASM_START()
 PROLOGUE(mpn_copyd)
 lea 16(%rsi),%rsi
