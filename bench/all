@@ -1,6 +1,6 @@
 #!/bin/bash
 # TODO should all funcs with return values have r??
-./benchmark mpn_add_n ppps ../mpn/add_n.as* ../mpn/x86_64/k8/add_n.as ../mpn/x86_64/sandybridge/add_n.as ../mpn/x86_64/nehalem/add_n.as ../mpn/x86_64/core2/add_n.as ../mpn/x86_64/netburst/add_n.as ../mpn/x86_64/atom/add_n.as
+./benchmark mpn_add_n ppps ../mpn/add_n.as* ../mpn/x86_64/k8/add_n.as ../mpn/x86_64/sandybridge/add_n.as ../mpn/x86_64/bobcat/add_n.as ../mpn/x86_64/nehalem/add_n.as ../mpn/x86_64/core2/add_n.as ../mpn/x86_64/netburst/add_n.as ../mpn/x86_64/atom/add_n.as
 ./benchmark mpn_addadd_n pppps ../mpn/addadd_n.as* ../mpn/x86_64/k8/addadd_n.as ../mpn/x86_64/bobcat/addadd_n.as ../mpn/x86_64/nehalem/addadd_n.asm ../mpn/x86_64/core2/addadd_n.asm
 ./benchmark mpn_addlsh1_n ppps ../mpn/addlsh1_n.as* ../mpn/x86_64/k8/addlsh1_n.as ../mpn/x86_64/bobcat/addlsh1_n.as ../mpn/x86_64/bulldozer/piledriver/addlsh1_n.asm ../mpn/x86_64/atom/addlsh1_n.as
 ./benchmark mpn_addsub_n pppps ../mpn/addsub_n.as* ../mpn/x86_64/k8/addsub_n.as ../mpn/x86_64/bobcat/addsub_n.as ../mpn/x86_64/nehalem/addsub_n.asm ../mpn/x86_64/core2/addsub_n.asm
