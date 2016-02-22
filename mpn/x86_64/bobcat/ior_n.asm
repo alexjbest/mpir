@@ -24,8 +24,8 @@ include(`../config.m4')
 C	ret mpn_ior_n(mp_ptr,mp_ptr,mp_ptr,mp_size_t)
 C	rax              rdi,   rsi,    rdx,  rcx
 
-C  | Architecture | Piledriver |  K10-2  |
-C  | Cycles/Limb  |    2.8     |   1.8   |
+C  | Architecture | Piledriver |  K10-2  | Sandybridge |
+C  | Cycles/Limb  |    2.8     |   1.8   |     1.3     |
 
 ASM_START()
 PROLOGUE(mpn_ior_n)

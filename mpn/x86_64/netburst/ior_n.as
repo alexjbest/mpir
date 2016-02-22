@@ -19,8 +19,8 @@
 
 ;	(rdi, rcx) = (rsi, rcx) | (rdx, rcx)	
 
-;  | Architecture | Piledriver |  K10-2  |
-;  | Cycles/Limb  |    2.8     |   1.8   |
+;  | Architecture | Piledriver |  K10-2  | Sandybridge |
+;  | Cycles/Limb  |    2.8     |   1.8   |     1.3     |
 
     BITS 64
     
