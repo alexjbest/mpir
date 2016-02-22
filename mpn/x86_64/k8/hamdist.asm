@@ -24,8 +24,8 @@ include(`../config.m4')
 C	ret mpn_hamdist(mp_ptr,mp_ptr,mp_size_t)
 C	rax               rdi,   rsi,      rdx
 
-C  | Architecture | Piledriver |  K10-2  |
-C  | Cycles/Limb  |    5.9     |   5.0   |
+C  | Architecture | Piledriver |  K10-2  | Sandybridge |
+C  | Cycles/Limb  |    5.9     |   5.0   |     4.4     |
 
 ASM_START()
 PROLOGUE(mpn_hamdist)

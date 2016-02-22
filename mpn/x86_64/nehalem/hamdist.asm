@@ -21,8 +21,8 @@ dnl  Boston, MA 02110-1301, USA.
 
 include(`../config.m4')
 
-C  | Architecture | Piledriver |  K10-2  |
-C  | Cycles/Limb  |    4.2     |   3.0   |
+C  | Architecture | Piledriver |  K10-2  | Sandybridge |
+C  | Cycles/Limb  |    4.2     |   3.0   |     1.5     |
 
 ASM_START()
 PROLOGUE(mpn_hamdist)
@@ -34,21 +34,21 @@ sub %rdx,%rcx
 jnc skiplp
 ALIGN(16)
 lp:
-	mov (%rdi,%rcx,8),%r8                                                                                                                                                               
-	xor (%rsi,%rcx,8),%r8                                                                                                                                                               
-	popcnt %r8,%r8                                                                                                                                                                      
-	mov 8(%rdi,%rcx,8),%r9                                                                                                                                                              
-	xor 8(%rsi,%rcx,8),%r9                                                                                                                                                              
-	popcnt %r9,%r9                                                                                                                                                                      
-	add %r8,%rax                                                                                                                                                                        
-	add %r9,%rax                                                                                                                                                                        
+	mov (%rdi,%rcx,8),%r8
+	xor (%rsi,%rcx,8),%r8
+	popcnt %r8,%r8
+	mov 8(%rdi,%rcx,8),%r9
+	xor 8(%rsi,%rcx,8),%r9
+	popcnt %r9,%r9
+	add %r8,%rax
+	add %r9,%rax
 	add $2,%rcx
 	jnc lp
 skiplp:
 jne fin
-	mov (%rdi,%rcx,8),%r8 
+	mov (%rdi,%rcx,8),%r8
 	xor (%rsi,%rcx,8),%r8
 	popcnt %r8,%r8
-	add %r8,%rax 
+	add %r8,%rax
 fin:	ret
 EPILOGUE()
