@@ -49,8 +49,8 @@
 ;  low limb of the calculation.  Note values other than 1 or 0 here will
 ;  lead to garbage results.
 
-;  | Architecture | Piledriver | Bulldozer |  K10-2  |
-;  | Cycles/Limb  |    2.7     |    2.9    |   1.6   |
+;  | Architecture | Piledriver | Bulldozer |  K10-2  | Sandybridge |
+;  | Cycles/Limb  |    2.7     |    2.9    |   1.6   |     1.3     |
 
 %include 'yasm_mac.inc'
 

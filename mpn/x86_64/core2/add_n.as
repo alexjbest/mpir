@@ -20,8 +20,8 @@
 ;	rax=mpn_add_n(mp_ptr rdi ,mp_ptr rsi ,mp_ptr rdx ,mp_size_t rcx)
 ;	(rdi,rcx)=(rsi,rcx)+(rdx,rcx)  return rax=carry
 
-;  | Architecture | Piledriver | Bulldozer |  K10-2  |
-;  | Cycles/Limb  |    2.9     |    2.9    |   1.9   |
+;  | Architecture | Piledriver | Bulldozer |  K10-2  | Sandybridge |
+;  | Cycles/Limb  |    2.9     |    2.9    |   1.9   |     1.7     |
 
 %include 'yasm_mac.inc'
 

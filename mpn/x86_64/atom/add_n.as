@@ -18,8 +18,8 @@
 ;	(rdi,rcx) = (rsi,rcx)+(rdx,rcx)
 ;	rax = carry
 
-;  | Architecture | Piledriver | Bulldozer |  K10-2  |
-;  | Cycles/Limb  |    2.9     |    3.0    |   1.5   |
+;  | Architecture | Piledriver | Bulldozer |  K10-2  | Sandybridge |
+;  | Cycles/Limb  |    2.9     |    3.0    |   1.5   |     1.4     |
 
 %include 'yasm_mac.inc'
 
