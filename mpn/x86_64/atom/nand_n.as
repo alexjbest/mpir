@@ -15,8 +15,8 @@
 ;  to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 ;  Boston, MA 02110-1301, USA.
 
-;  | Architecture | Piledriver |  K10-2  |
-;  | Cycles/Limb  |    3.2     |   1.6   |
+;  | Architecture | Piledriver |  K10-2  | Sandybridge |
+;  | Cycles/Limb  |    3.2     |   1.6   |     1.5     |
 
 %include 'yasm_mac.inc'
 
