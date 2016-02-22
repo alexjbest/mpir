@@ -19,8 +19,8 @@ dnl  along with the MPIR Library; see the file COPYING.LIB.  If not, write
 dnl  to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 dnl  Boston, MA 02110-1301, USA.
 
-dnl  | Architecture | Piledriver |  K10-2  |
-dnl  | Cycles/Limb  |    2.8     |   1.5   |
+dnl  | Architecture | Piledriver |  K10-2  | Sandybridge |
+dnl  | Cycles/Limb  |    2.8     |   1.5   |     1.3     |
 
 include(`../config.m4')
 
