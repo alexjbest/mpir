@@ -24,8 +24,8 @@ include(`../config.m4')
 C	ret mpn_copyi(mp_ptr,mp_ptr,mp_size_t)
 C	rax             rdi,   rsi,      rdx
 
-C  | Architecture | Piledriver |  K10-2  |
-C  | Cycles/Limb  |    1.3     |   1.0   |
+C  | Architecture | Piledriver |  K10-2  | Sandybridge |
+C  | Cycles/Limb  |    1.3     |   1.0   |     0.7     |
 
 ASM_START()
 PROLOGUE(mpn_copyi)

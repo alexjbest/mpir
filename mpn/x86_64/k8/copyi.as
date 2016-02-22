@@ -22,8 +22,8 @@
 ;	mpn_copyi(mp_ptr rdi ,mp_ptr rsi ,mp_size_t rdx)
 ;	(rdi,rdx)=(rsi,rdx)
 
-;  | Architecture | Piledriver |  K10-2  |
-;  | Cycles/Limb  |    1.5     |   1.0   |
+;  | Architecture | Piledriver |  K10-2  | Sandybridge |
+;  | Cycles/Limb  |    1.5     |   1.0   |     0.9     |
 
 	GLOBAL_FUNC mpn_copyi
 	sub     rdx, 4
