@@ -46,7 +46,7 @@ for file in ${FILES[@]}
 do
 	if [[ ! -f $file ]] ; then
 		echo "error: $file not found."
-		exit
+		continue
 	fi
 	echo "copying: $file"
 	SUM=$(tr -d "[:blank:]" < $file | grep -v '^$\|^\s*\dnl\|^\s*\C\|^\s*\#\|^\s*\;' | md5sum | cut -c 1-32)
