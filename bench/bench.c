@@ -1,18 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "mpir.h"
-#define SIZE_OF_STAT 50
-#define INNER_ITER 200
-#define BOUND_OF_LOOP 1
+#define SIZE_OF_STAT 250
+#define INNER_ITER 100
+#define BOUND_OF_LOOP 10
 #define MAX_LIMBS 1000
 #define INCREMENT 7
 define(`callfunc',`
-        ifdef(`rps',`  ret = funcname (data1, limbs); ') //TODO could maybe use ifelse based switch here which might look nicer
-        ifdef(`ps',`   funcname (data1, limbs); ')
-        ifdef(`rpps',` ret =  funcname (data1, data2, limbs); ')
-        ifdef(`pps',`  funcname (data1, data2, limbs); ')
-        ifdef(`ppps',` funcname (data1, data2, data3, limbs); ')
-        ifdef(`pppps',`funcname (data1, data2, data3, data4, limbs); ')
+        ifdef(`rps',`  ret = funcname (data1, limbs) ') //TODO could maybe use ifelse based switch here which might look nicer
+        ifdef(`ps',`   funcname (data1, limbs) ')
+        ifdef(`rpps',` ret =  funcname (data1, data2, limbs) ')
+        ifdef(`pps',`  funcname (data1, data2, limbs) ')
+        ifdef(`ppps',` funcname (data1, data2, data3, limbs) ')
+        ifdef(`pppps',`funcname (data1, data2, data3, data4, limbs) ')
     ')
 
 void inline
@@ -69,53 +69,57 @@ Filltimes(mp_limb_t **times, mp_ptr data1, mp_ptr data2, mp_ptr data3, mp_ptr da
 
     for (k = 0; k < INNER_ITER; k++)
     {
-      callfunc
+      callfunc;
     }
 
     for (i = 0; i< SIZE_OF_STAT; i++)
     {
+      mp_limb_t curtime = 0;
       mpn_copyi(data1, sdata1, limbs);
       mpn_copyi(data2, sdata2, limbs);
       mpn_copyi(data3, sdata3, limbs);
       mpn_copyi(data4, sdata4, limbs);
       variable = 0;
+      times[j][0] = 0;
 
       for (k = 0; k < INNER_ITER; k++)
       {
-        callfunc
+        callfunc;
       }
-
-      // start timing
-      asm volatile (
-          "CPUID\n\t"
-          "RDTSC\n\t"
-          "mov %%edx, %0\n\t"
-          "mov %%eax, %1\n\t": "=r" (cycles_high), "=r"
-          (cycles_low):: "%rax", "%rbx", "%rcx", "%rdx");
 
       for (k = 0; k < INNER_ITER; k++)
       {
-        callfunc
-      }
+        // start timing
+        asm volatile (
+            "CPUID\n\t"
+            "RDTSC\n\t"
+            "mov %%edx, %0\n\t"
+            "mov %%eax, %1\n\t": "=r" (cycles_high), "=r"
+            (cycles_low):: "%rax", "%rbx", "%rcx", "%rdx");
 
-      // end timing
-      asm volatile(
-          "RDTSCP\n\t"
-          "mov %%edx, %0\n\t"
-          "mov %%eax, %1\n\t": "=r" (cycles_high1), "=r"
-          "CPUID\n\t"
-          (cycles_low1):: "%rax", "%rbx", "%rcx", "%rdx");
+        callfunc;
 
-      start = ( ((mp_limb_t)cycles_high << 32) | cycles_low );
-      end = ( ((mp_limb_t)cycles_high1 << 32) | cycles_low1 );
-      if ( (end - start) < 0) {
-        printf("ERROR IN TAKING THE TIME!!!!!!\n loop(%d) stat(%d) start = %ld, end = %ld, variable = %u\n", j, i, start, end, variable);
-        times[j][i] = 0;
+        // end timing
+        asm volatile(
+            "RDTSCP\n\t"
+            "mov %%edx, %0\n\t"
+            "mov %%eax, %1\n\t": "=r" (cycles_high1), "=r"
+            "CPUID\n\t"
+            (cycles_low1):: "%rax", "%rbx", "%rcx", "%rdx");
+
+        start = ( ((mp_limb_t)cycles_high << 32) | cycles_low );
+        end = ( ((mp_limb_t)cycles_high1 << 32) | cycles_low1 );
+        if ( (end - start) < 0) {
+          printf("ERROR IN TAKING THE TIME!!!!!!\n loop(%d) stat(%d) start = %ld, end = %ld, variable = %u\n", j, i, start, end, variable);
+        }
+        else
+        {
+          curtime += end - start;
+        }
       }
-      else
-      {
-        times[j][i] = (end - start)/INNER_ITER;
-      }
+      curtime = curtime / INNER_ITER;
+      if (times[j][0] == 0 || curtime < times[j][0])
+        times[j][0] = curtime;
     }
   }
 
@@ -180,7 +184,8 @@ main (int argc, char *argv[])
   }
   for (j=0; j<BOUND_OF_LOOP; j++)
   {
-    times[j] = malloc(SIZE_OF_STAT*sizeof(mp_limb_t));
+    times[j] = malloc(sizeof(mp_limb_t));
+    //times[j] = malloc(SIZE_OF_STAT*sizeof(mp_limb_t));
     if (!times[j]) {
       printf( "unable to allocate memory for times[%d]\n", j);
       for (k=0; k<j; k++)
@@ -212,7 +217,8 @@ main (int argc, char *argv[])
       max_dev = 0;
       min_time = 0;
       max_time = 0;
-      for (i =0; i<SIZE_OF_STAT; i++)
+      //for (i =0; i<SIZE_OF_STAT; i++)
+      for (i =0; i<1; i++)
       {
         if ((min_time == 0)||(min_time > times[j][i]))
           min_time = times[j][i];

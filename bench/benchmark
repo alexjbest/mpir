@@ -72,7 +72,7 @@ do
 		OUTPUT=$( tmp/bench )
 		#echo $OUTPUT
 		DATE=$(date +"%F %T")
-		sed -i "$BENCHLINE a\\ \ -\n\ \ \ \ date: $DATE\n\ \ \ \ hash: $SUM\n\ \ \ \ cpu: $CPU\n\ \ \ \ arch: $GUESS\n\ \ \ \ results: $OUTPUT" data.yml
+		sed -i "$BENCHLINE a\\ \ -\n\ \ \ \ date: $DATE\n\ \ \ \ hash: $SUM\n\ \ \ \ filepath: $file\n\ \ \ \ cpu: $CPU\n\ \ \ \ arch: $GUESS\n\ \ \ \ results: $OUTPUT" data.yml
 	fi
 
 done
