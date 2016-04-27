@@ -59,6 +59,9 @@ do
 	then
 		m4 $file > tmp/func.s
 		gcc -c -I.. -o tmp/func.o tmp/func.s
+	elif [[ $file == *.c ]]
+	then
+		gcc -c -I.. -o tmp/func.o $file
 	elif [[ $file == *.as ]]
 	then
 		cp $file tmp/func.s
