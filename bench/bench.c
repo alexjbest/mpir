@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "mpir.h"
 #define SIZE_OF_STAT 250
-#define INNER_ITER 100
+#define INNER_ITER 10
 #define BOUND_OF_LOOP 10
 #define MAX_LIMBS 1000
 #define INCREMENT 7
@@ -110,7 +110,7 @@ Filltimes(mp_limb_t **times, mp_ptr data1, mp_ptr data2, mp_ptr data3, mp_ptr da
         start = ( ((mp_limb_t)cycles_high << 32) | cycles_low );
         end = ( ((mp_limb_t)cycles_high1 << 32) | cycles_low1 );
         if ( (end - start) < 0) {
-          printf("ERROR IN TAKING THE TIME!!!!!!\n loop(%d) stat(%d) start = %ld, end = %ld, variable = %u\n", j, i, start, end, variable);
+          printf("error in taking the time!\n loop(%d) stat(%d) start = %ld, end = %ld, variable = %u\n", j, i, start, end, variable);
         }
         else
         {
